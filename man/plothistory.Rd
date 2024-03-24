@@ -4,40 +4,15 @@
 \alias{plothistory}
 \title{Record Your Plot History}
 \usage{
-plothistory(
-  phdir = phist_tmp_dir(),
-  sleep = 1,
-  hgd = TRUE,
-  port = 5900,
-  token = FALSE,
-  ...
-)
+plothistory(phdir = phist_tmp_dir())
 }
 \arguments{
 \item{phdir}{\code{character(1)} defining the plothistory
 directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}.}
-
-\item{sleep}{\code{numeric(1)} > 0 indicating the clock cycle in
-seconds. at which \code{phdir} should be updated. Default is 1
-second. Passed to \code{\link[=Sys.sleep]{Sys.sleep()}}.}
-
-\item{hgd}{\code{logical(1)} defining whether a web graphics device
-should be started with \code{port} and \code{token}. Default is
-\code{TRUE}. In case the backgroup script stops, the plotting
-history can be restarted by setting \code{hgd = FALSE}.}
-
-\item{port}{\code{numeric(1)} defining the server port, passed to
-\code{\link[httpgd:hgd]{httpgd::hgd()}}. If this is set to ‘0’, an open port will be
-assigned. Default is 5900.}
-
-\item{token}{Optional security token, passed to
-\code{\link[httpgd:hgd]{httpgd::hgd()}}. Default is \code{FALSE} to deactivate the token.}
-
-\item{...}{Additional parameters passed to \code{\link[httpgd:hgd]{httpgd::hgd()}}.}
 }
 \value{
 The value of the error code (0 for success) of the
-background script. See \code{\link[=system2]{system2()}} for details.
+background script.
 }
 \description{
 Record Your Plot History

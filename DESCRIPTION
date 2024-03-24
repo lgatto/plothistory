@@ -1,9 +1,9 @@
 Package: plothistory
 Title: Store and manage your plot history
-Version: 0.0.1
+Version: 0.0.2
 Authors@R:
     person("Laurent", "Gatto",
-           email = "first.last@example.com",
+           email = "laurent.gatto@uclouvain.be",
            role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1520-2268"))
 Description: The package provides a way to store all plots that are

@@ -87,7 +87,7 @@ deleted once the R session closes.</li>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_tmp_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
-<span><span class="co">##   /tmp/RtmpwK6UBe</span></span></code></pre>
+<span><span class="co">##   /tmp/RtmpIwyB8A</span></span></code></pre>
 <ul>
 <li>A central cache, using the <code><a href="../reference/phist_dir.html">phist_cache_dir()</a></code>
 function.</li>
@@ -97,13 +97,18 @@ function.</li>
 <pre><code><span><span class="co">## Plot history set to</span></span>
 <span><span class="co">##   /home/runner/.cache/R/plothistory</span></span></code></pre>
 <ul>
+<li>The working directory</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_current_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Plot history set to</span></span>
+<span><span class="co">##   /home/runner/work/plothistory/plothistory/vignettes</span></span></code></pre>
+<ul>
 <li>An arbitrary user-defined directory, using the
 <code><a href="../reference/phist_dir.html">phist_dir()</a></code>.</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Plot history set to</span></span>
-<span><span class="co">##   /home/runner/work/plothistory/plothistory/vignettes</span></span></code></pre>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_dir</a></span><span class="op">(</span><span class="st">"path/to/dir"</span><span class="op">)</span></span></code></pre></div>
 <p>In each case, the function will first check if the directory exists,
 and create if otherwise. The user will be asked to confirm whether the
 central cache directory should be created the first time
@@ -112,10 +117,10 @@ central cache directory should be created the first time
 <code><a href="../reference/plothistory.html">plothistory()</a></code> function. By default, it will use a temporary
 directory, but the above functions can be functions can be passed to
 <code><a href="../reference/plothistory.html">plothistory()</a></code> to change this behaviour.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plothistory.html">plothistory</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
-<span><span class="co">##   /tmp/RtmpwK6UBe</span></span></code></pre>
+<span><span class="co">##   /tmp/RtmpIwyB8A</span></span></code></pre>
 <pre><code><span><span class="co">## httpgd server running at:</span></span>
 <span><span class="co">##   http://127.0.0.1:5900/live</span></span></code></pre>
 <p>The plots are generated using the <a href="https://nx10.github.io/httpgd/" class="external-link">httpgd</a> graphics device and can
@@ -124,7 +129,7 @@ seen at the URL shown above.</p>
 <div class="section level2">
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## R version 4.3.3 (2024-02-29)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>

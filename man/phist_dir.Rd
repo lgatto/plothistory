@@ -3,15 +3,12 @@
 \name{phist_dir}
 \alias{phist_dir}
 \alias{phist_tmp_dir}
-\alias{phist_current_dir}
 \alias{phist_cache_dir}
 \title{Create a Plot History Directory}
 \usage{
 phist_dir(path, ...)
 
 phist_tmp_dir()
-
-phist_current_dir()
 
 phist_cache_dir(ask = TRUE)
 }
@@ -33,8 +30,8 @@ directory.
 These functions create the plot history directory and invisibly
 return the path:
 \itemize{
-\item \code{phist_tmp_dir()} creates a ' temporary directory.  -
-\code{phist_cache_dir()} uses the package's central ' cache directory.
+\item \code{phist_tmp_dir()} creates a ' temporary directory.
+\item \code{phist_cache_dir()} uses the package's central ' cache directory.
 \item \code{phist_dir()} takes a user-defined ' directory.
 }
 

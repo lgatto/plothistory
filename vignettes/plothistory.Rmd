@@ -38,17 +38,10 @@ phist_tmp_dir()
 phist_cache_dir()
 ```
 
-
-- The working directory
-
-```{r wdir}
-phist_current_dir()
-```
-
 - An arbitrary user-defined directory, using the `phist_dir()`.
 
-```{r usrdir, eval = FALSE}
-phist_dir("path/to/dir")
+```{r usrdir}
+phist_dir(getwd())
 ```
 
 In each case, the function will first check if the directory exists,

@@ -2,7 +2,6 @@
 
 export(phist_cache)
 export(phist_cache_dir)
-export(phist_current_dir)
 export(phist_dir)
 export(phist_tmp_dir)
 export(plothistory)

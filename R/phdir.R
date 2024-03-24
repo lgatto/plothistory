@@ -5,8 +5,10 @@
 ##' These functions create the plot history directory and invisibly
 ##' return the path:
 ##'
-##' - `phist_tmp_dir()` creates a ' temporary directory.  -
-##' `phist_cache_dir()` uses the package's central ' cache directory.
+##' - `phist_tmp_dir()` creates a ' temporary directory.
+##'
+##' - `phist_cache_dir()` uses the package's central ' cache directory.
+##'
 ##' - `phist_dir()` takes a user-defined ' directory.
 ##'
 ##' The directory creating is delegated to [tempdir()] by
@@ -39,12 +41,6 @@ phist_dir <- function(path, ...) {
 ##' @rdname phist_dir
 phist_tmp_dir <- function()
     phist_dir(tempdir())
-
-##' @export
-##'
-##' @rdname phist_dir
-phist_current_dir <- function()
-    phist_dir(getwd())
 
 ##' @export
 ##'

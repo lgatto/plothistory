@@ -1,3 +1,5 @@
+[![R-CMD-check](https://github.com/lgatto/plothistory/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lgatto/plothistory/actions/workflows/R-CMD-check.yaml)
+
 # Store all plus in or across sessions
 
 The `plothistory` package enables one to store all plus generated

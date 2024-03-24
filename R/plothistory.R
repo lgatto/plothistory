@@ -1,5 +1,21 @@
 ##' @title Record Your Plot History
 ##'
+##' @description The `plothistory()` function initiates saving all
+##'     plots generated during the session in `phdir`. It works as
+##'     follows:
+##'
+##' - It starts a http graphics device using [httpgd::hgd()]. By
+##'   default, the localhost port is set to 5900 and no token is
+##'   set. A first empty plot is created by default.
+##'
+##' - It then start an R script in the background that will fetch the
+##'   latest plot from the [httpgd::hgd()] device, rename it using its
+##'   md5sum (so as to avoid duplicating plots), and created a
+##'   symbolic link ".last.svg" pointing to the latest figure.
+##'
+##' The background R script is automatically terminated when closing
+##' the R session.
+##'
 ##' @param phdir `character(1)` defining the plothistory
 ##'     directory. Default is to [phist_tmp_dir()].
 ##'

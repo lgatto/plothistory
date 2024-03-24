@@ -60,7 +60,12 @@ plothistory()
 
 The plots are generated using the
 [httpgd](https://nx10.github.io/httpgd/) graphics device and can seen
-at the URL shown above.
+at the URL shown above. Each plot is now copied in the directory
+defined in `plothistory()`.
+
+For more details on how this works, see the [`plothistory()` manual
+page](https://lgatto.github.io/plothistory/reference/plothistory.html)
+online or with `?plothistory`.
 
 ## Session information
 

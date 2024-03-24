@@ -15,5 +15,19 @@ The value of the error code (0 for success) of the
 background script.
 }
 \description{
-Record Your Plot History
+The \code{plothistory()} function initiates saving all
+plots generated during the session in \code{phdir}. It works as
+follows:
+\itemize{
+\item It starts a http graphics device using \code{\link[httpgd:hgd]{httpgd::hgd()}}. By
+default, the localhost port is set to 5900 and no token is
+set. A first empty plot is created by default.
+\item It then start an R script in the background that will fetch the
+latest plot from the \code{\link[httpgd:hgd]{httpgd::hgd()}} device, rename it using its
+md5sum (so as to avoid duplicating plots), and created a
+symbolic link ".last.svg" pointing to the latest figure.
+}
+
+The background R script is automatically terminated when closing
+the R session.
 }

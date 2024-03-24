@@ -1,10 +1,3 @@
-##' @importFrom httpgd hgd
-dirgd <- function(port = 5900,
-                  token = FALSE,
-                  ...)
-    hgd(port = port, token = token, ...)
-
-
 ##' @importFrom httr2 request req_perform
 get_plot <- function(host = "127.0.0.1",
                      port = 5900) {

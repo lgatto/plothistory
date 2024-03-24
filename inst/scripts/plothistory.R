@@ -10,4 +10,4 @@ sleep <- as.numeric(args[2])
 stopifnot(!is.na(sleep),
           sleep > 0)
 
-plothistory:::phist_update(phdir, sleep)
+plothistory:::run_plothistory(phdir, sleep)

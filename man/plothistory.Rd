@@ -4,11 +4,15 @@
 \alias{plothistory}
 \title{Record Your Plot History}
 \usage{
-plothistory(phdir = phist_tmp_dir())
+plothistory(phdir = phist_tmp_dir(), sleep = 1)
 }
 \arguments{
 \item{phdir}{\code{character(1)} defining the plothistory
 directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}.}
+
+\item{sleep}{\code{numeric(1)} > 0 indicating the clock cycle in
+seconds. at which \code{phdir} should be updated. Default is 1
+second. Passed to \code{\link[=Sys.sleep]{Sys.sleep()}}.}
 }
 \value{
 Invisibly returns \code{TRUE}

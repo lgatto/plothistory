@@ -7,14 +7,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
-
-
 ## How can I used it?
 
 The `plothistory` package enables one to store all plus generated
@@ -22,7 +14,7 @@ during a session in a user-defined directory, alike all commands
 stored in the `.Rhistory` file. These directories can be reused across
 different sessions to keep storing plots.
 
-```{r setup}
+```{r lib}
 library(plothistory)
 ```
 
@@ -32,19 +24,19 @@ Three directories can be used:
   `phist_tmp_dir()` function. This temporary directory is deleted once
   the R session closes.
   
-```{r}
+```{r tmpdir}
 phist_tmp_dir()
 ```
 
 - A central cache, using the `phist_cache_dir()` function. 
 
-```{r}
+```{r cachedir}
 phist_cache_dir()
 ```
 
 - An arbitrary user-defined directory, using the `phist_dir()`.
 
-```{r}
+```{r usrdir}
 phist_dir(getwd())
 ```
 
@@ -58,7 +50,7 @@ function. By default, it will use a temporary directory, but the above
 functions can be functions can be passed to `plothistory()` to change
 this behaviour.
 
-```{r}
+```{r plothistory}
 plothistory()
 ```
 
@@ -66,10 +58,8 @@ The plots are generated using the
 [httpgd](https://nx10.github.io/httpgd/) graphics device and can seen
 at the URL shown above.
 
-## How does it work?
-
 ## Session information
 
-```{r}
+```{r si}
 sessionInfo()
 ```

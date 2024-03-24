@@ -2,17 +2,19 @@
 ##'
 ##' @description
 ##'
-##  These functions create the plot history directory and ' invisibly
-##  return the path. `phist_tmp_dir()` creates a ' temporary
-##  directory, `phist_current_dir()` uses the working ' directory,
-##  `phist_cache_dir()` uses the package's central ' cache directory,
-##  and `phist_dir()` takes a user defined ' directory.
+##' These functions create the plot history directory and invisibly
+##' return the path:
+##'
+##' - `phist_tmp_dir()` creates a ' temporary directory.  -
+##' `phist_cache_dir()` uses the package's central ' cache directory.
+##' - `phist_dir()` takes a user-defined ' directory.
 ##'
 ##' The directory creating is delegated to [tempdir()] by
-##' `phist_tmp_dir()` and [dir.create()] by `phist_dir()`.
+##' `phist_tmp_dir()` and [dir.create()] by `phist_dir()` and
+##' `phist_cache_dir()`.
 ##'
 ##' @param path `character(1)` with a single path name, passed to
-##'     [dir.create()].
+##'     [dir.create()]. Only relevant in the user-defined case.
 ##'
 ##' @param ... Additional parameters passed to [dir.create()].
 ##'

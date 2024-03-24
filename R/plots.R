@@ -1,13 +1,10 @@
 ##' @importFrom httr2 request req_perform
-get_plot <- function(host = "127.0.0.1",
-                     port = 5900) {
-    url <- paste0("http://", host, ":",
-                  port, "/plot")
-    ## plot <- try(request(url) |> req_perform())
-    ## if (inherits(plot, "try-error"))
-    ##     return(character())
-    ## else
-    ##     readLines(url, warn = FALSE)
+##' @importFrom httpgd hgd_details
+get_plot <- function(host, port) {
+    det <- hgd_details()        
+    if (missing(host)) host <- det$host
+    if (missing(port)) port <- det$port
+    url <- paste0("http://", host, ":", port, "/plot")
     readLines(url, warn = FALSE)    
 }
 
@@ -26,22 +23,20 @@ get_plot <- function(host = "127.0.0.1",
 ##'
 ##' @importFrom tools md5sum
 save_plot_to_file <- function(x, dir, lnsym = ".last.svg") {
-    ## if (!length(x)) 
-    ##     return(x)
     dir <- path.expand(dir)
     lnsym <- file.path(dir, lnsym)
     stopifnot(dir.exists(dir))
     fl <- file.path(dir, "current.svg")
     on.exit(unlink(fl))
     writeLines(x, fl)
+    ## we only want files
     fls <- setdiff(list.files(dir, full.names = TRUE,
                               no.. = TRUE),
                    list.dirs(dir, recursive = FALSE))
     md5 <- tools::md5sum(fls)
     newf <- file.path(dir, paste0(md5[[fl]], ".svg"))
     if (!(anyDuplicated(md5))) {
-        file.rename(from = fl,
-                    to = newf)
+        file.rename(from = fl, to = newf)
         unlink(lnsym)
         file.symlink(newf, lnsym)
     }

@@ -11,8 +11,9 @@
 ##' @param ask `logical(1)` that defines whether to ask to create the
 ##'     cache directory it doesn't exist yet. Default is `TRUE`.
 ##' 
-##' @return The `phist_cache()` function returns an instance of class
-##'     `BiocFileCache`.
+##' @return The path to the cache directory or `NA`, when it's not
+##'     set.
+##'     
 ##'
 ##' @author Laurent Gatto
 ##'
@@ -23,6 +24,9 @@
 ##' @examples
 ##'
 ##' phist_cache()
+##'
+##' ## to set it in a non-interactive session
+##' phist_cache(ask = FALSE)
 phist_cache <- function(ask = TRUE) {
     cache <- tools::R_user_dir(package = "plothistory",
                                which = "cache")

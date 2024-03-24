@@ -17,7 +17,7 @@ phist_cache_dir(ask = TRUE)
 }
 \arguments{
 \item{path}{\code{character(1)} with a single path name, passed to
-\code{\link[=dir.create]{dir.create()}}.}
+\code{\link[=dir.create]{dir.create()}}. Only relevant in the user-defined case.}
 
 \item{...}{Additional parameters passed to \code{\link[=dir.create]{dir.create()}}.}
 
@@ -30,6 +30,15 @@ directory. Invisibly returns the path to the newly created
 directory.
 }
 \description{
+These functions create the plot history directory and invisibly
+return the path:
+\itemize{
+\item \code{phist_tmp_dir()} creates a ' temporary directory.  -
+\code{phist_cache_dir()} uses the package's central ' cache directory.
+\item \code{phist_dir()} takes a user-defined ' directory.
+}
+
 The directory creating is delegated to \code{\link[=tempdir]{tempdir()}} by
-\code{phist_tmp_dir()} and \code{\link[=dir.create]{dir.create()}} by \code{phist_dir()}.
+\code{phist_tmp_dir()} and \code{\link[=dir.create]{dir.create()}} by \code{phist_dir()} and
+\code{phist_cache_dir()}.
 }

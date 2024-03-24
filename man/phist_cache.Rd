@@ -11,8 +11,8 @@ phist_cache(ask = TRUE)
 cache directory it doesn't exist yet. Default is \code{TRUE}.}
 }
 \value{
-The \code{phist_cache()} function returns an instance of class
-\code{BiocFileCache}.
+The path to the cache directory or \code{NA}, when it's not
+set.
 }
 \description{
 Function to access (and manage) the plothistory package
@@ -24,6 +24,9 @@ When plots are cached, they are named after their md5sum.
 \examples{
 
 phist_cache()
+
+## to set it in a non-interactive session
+phist_cache(ask = FALSE)
 }
 \author{
 Laurent Gatto

@@ -1,14 +1,21 @@
 Package: plothistory
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Title: Store and manage your plot history
+Version: 0.0.1
+Authors@R:
+    person("Laurent", "Gatto",
+           email = "first.last@example.com",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-1520-2268"))
+Description: The package provides a way to store all plots that are
+   generate during or across sessions.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-Suggests: 
+Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Imports:
+    httr2,
+    httpgd,
+    tools

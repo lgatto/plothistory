@@ -47,14 +47,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plothistory</span><span class="op">(</span></span>
-<span>  phdir <span class="op">=</span> <span class="fu"><a href="phist_dir.html">phist_tmp_dir</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  sleep <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  hgd <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  port <span class="op">=</span> <span class="fl">5900</span>,</span>
-<span>  token <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plothistory</span><span class="op">(</span>phdir <span class="op">=</span> <span class="fu"><a href="phist_dir.html">phist_tmp_dir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,41 +56,13 @@
 <dd><p><code>character(1)</code> defining the plothistory
 directory. Default is to <code><a href="phist_dir.html">phist_tmp_dir()</a></code>.</p></dd>
 
-
-<dt>sleep</dt>
-<dd><p><code>numeric(1)</code> &gt; 0 indicating the clock cycle in
-seconds. at which <code>phdir</code> should be updated. Default is 1
-second. Passed to <code><a href="https://rdrr.io/r/base/Sys.sleep.html" class="external-link">Sys.sleep()</a></code>.</p></dd>
-
-
-<dt>hgd</dt>
-<dd><p><code>logical(1)</code> defining whether a web graphics device
-should be started with <code>port</code> and <code>token</code>. Default is
-<code>TRUE</code>. In case the backgroup script stops, the plotting
-history can be restarted by setting <code>hgd = FALSE</code>.</p></dd>
-
-
-<dt>port</dt>
-<dd><p><code>numeric(1)</code> defining the server port, passed to
-<code><a href="https://nx10.github.io/httpgd/reference/hgd.html" class="external-link">httpgd::hgd()</a></code>. If this is set to ‘0’, an open port will be
-assigned. Default is 5900.</p></dd>
-
-
-<dt>token</dt>
-<dd><p>Optional security token, passed to
-<code><a href="https://nx10.github.io/httpgd/reference/hgd.html" class="external-link">httpgd::hgd()</a></code>. Default is <code>FALSE</code> to deactivate the token.</p></dd>
-
-
-<dt>...</dt>
-<dd><p>Additional parameters passed to <code><a href="https://nx10.github.io/httpgd/reference/hgd.html" class="external-link">httpgd::hgd()</a></code>.</p></dd>
-
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
 
 <p>The value of the error code (0 for success) of the
-background script. See <code><a href="https://rdrr.io/r/base/system2.html" class="external-link">system2()</a></code> for details.</p>
+background script.</p>
     </div>
 
   </div>

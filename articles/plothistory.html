@@ -69,7 +69,6 @@
 
     
     
-<pre><code><span><span class="co">## [1] "/home/runner/.cache/R/plothistory"</span></span></code></pre>
 <div class="section level2">
 <h2 id="how-can-i-used-it">How can I used it?<a class="anchor" aria-label="anchor" href="#how-can-i-used-it"></a>
 </h2>
@@ -77,7 +76,7 @@
 generated during a session in a user-defined directory, alike all
 commands stored in the <code>.Rhistory</code> file. These directories
 can be reused across different sessions to keep storing plots.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">plothistory</span><span class="op">)</span></span></code></pre></div>
 <p>Three directories can be used:</p>
 <ul>
@@ -85,15 +84,15 @@ can be reused across different sessions to keep storing plots.</p>
 <code><a href="../reference/phist_dir.html">phist_tmp_dir()</a></code> function. This temporary directory is
 deleted once the R session closes.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_tmp_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
-<span><span class="co">##   /tmp/RtmpKbdloM</span></span></code></pre>
+<span><span class="co">##   /tmp/RtmpvTQijD</span></span></code></pre>
 <ul>
 <li>A central cache, using the <code><a href="../reference/phist_dir.html">phist_cache_dir()</a></code>
 function.</li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_cache_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
 <span><span class="co">##   /home/runner/.cache/R/plothistory</span></span></code></pre>
@@ -101,7 +100,7 @@ function.</li>
 <li>An arbitrary user-defined directory, using the
 <code><a href="../reference/phist_dir.html">phist_dir()</a></code>.</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
 <span><span class="co">##   /home/runner/work/plothistory/plothistory/vignettes</span></span></code></pre>
@@ -113,10 +112,10 @@ central cache directory should be created the first time
 <code><a href="../reference/plothistory.html">plothistory()</a></code> function. By default, it will use a temporary
 directory, but the above functions can be functions can be passed to
 <code><a href="../reference/plothistory.html">plothistory()</a></code> to change this behaviour.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plothistory.html">plothistory</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
-<span><span class="co">##   /tmp/RtmpKbdloM</span></span></code></pre>
+<span><span class="co">##   /tmp/RtmpvTQijD</span></span></code></pre>
 <pre><code><span><span class="co">## httpgd server running at:</span></span>
 <span><span class="co">##   http://127.0.0.1:5900/live</span></span></code></pre>
 <p>The plots are generated using the <a href="https://nx10.github.io/httpgd/" class="external-link">httpgd</a> graphics device and can
@@ -125,7 +124,7 @@ seen at the URL shown above.</p>
 <div class="section level2">
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## R version 4.3.3 (2024-02-29)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
@@ -153,13 +152,12 @@ seen at the URL shown above.</p>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
 <span><span class="co">##  [1] vctrs_0.6.5       cli_3.6.2         knitr_1.45        rlang_1.1.3      </span></span>
 <span><span class="co">##  [5] xfun_0.42         purrr_1.0.2       textshaping_0.3.7 jsonlite_1.8.8   </span></span>
-<span><span class="co">##  [9] glue_1.7.0        htmltools_0.5.7   ragg_1.3.0        sass_0.4.9       </span></span>
-<span><span class="co">## [13] rappdirs_0.3.3    rmarkdown_2.26    evaluate_0.23     jquerylib_0.1.4  </span></span>
-<span><span class="co">## [17] fastmap_1.1.1     yaml_2.3.8        lifecycle_1.0.4   httr2_1.0.0      </span></span>
-<span><span class="co">## [21] memoise_2.0.1     compiler_4.3.3    fs_1.6.3          httpgd_2.0.1     </span></span>
-<span><span class="co">## [25] systemfonts_1.0.6 digest_0.6.35     R6_2.5.1          unigd_0.1.0      </span></span>
-<span><span class="co">## [29] magrittr_2.0.3    bslib_0.6.2       tools_4.3.3       pkgdown_2.0.7    </span></span>
-<span><span class="co">## [33] cachem_1.0.8      desc_1.4.3</span></span></code></pre>
+<span><span class="co">##  [9] htmltools_0.5.7   ragg_1.3.0        sass_0.4.9        rmarkdown_2.26   </span></span>
+<span><span class="co">## [13] evaluate_0.23     jquerylib_0.1.4   fastmap_1.1.1     yaml_2.3.8       </span></span>
+<span><span class="co">## [17] lifecycle_1.0.4   memoise_2.0.1     compiler_4.3.3    fs_1.6.3         </span></span>
+<span><span class="co">## [21] httpgd_2.0.1      systemfonts_1.0.6 digest_0.6.35     R6_2.5.1         </span></span>
+<span><span class="co">## [25] unigd_0.1.0       magrittr_2.0.3    bslib_0.6.2       tools_4.3.3      </span></span>
+<span><span class="co">## [29] pkgdown_2.0.7     cachem_1.0.8      desc_1.4.3</span></span></code></pre>
 </div>
   </div>
 

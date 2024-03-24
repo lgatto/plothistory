@@ -13,13 +13,16 @@ phist_tmp_dir()
 
 phist_current_dir()
 
-phist_cache_dir()
+phist_cache_dir(ask = TRUE)
 }
 \arguments{
 \item{path}{\code{character(1)} with a single path name, passed to
 \code{\link[=dir.create]{dir.create()}}.}
 
 \item{...}{Additional parameters passed to \code{\link[=dir.create]{dir.create()}}.}
+
+\item{ask}{\code{logical(1)} that defines whether to ask to create the
+cache directory it doesn't exist yet. Default is \code{TRUE}.}
 }
 \value{
 Used for its side effect of creating a

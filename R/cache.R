@@ -8,6 +8,9 @@
 ##'
 ##' When plots are cached, they are named after their md5sum.
 ##'
+##' @param ask `logical(1)` that defines whether to ask to create the
+##'     cache directory it doesn't exist yet. Default is `TRUE`.
+##' 
 ##' @return The `phist_cache()` function returns an instance of class
 ##'     `BiocFileCache`.
 ##'
@@ -20,11 +23,17 @@
 ##' @examples
 ##'
 ##' phist_cache()
-phist_cache <- function() {
+phist_cache <- function(ask = TRUE) {
     cache <- tools::R_user_dir(package = "plothistory",
                                which = "cache")
     if (!file.exists(cache)) {
-        if (!interactive()) return(FALSE)
+        if (!interactive()) {
+            if (ask) return(NA)
+            else {
+                dir.create(cache, recursive = TRUE)
+                return(cache)
+            }
+        }
         txt <- paste0(cache,
                    "\n does not exist, create directory? (yes/no): ")
         doit <- NA

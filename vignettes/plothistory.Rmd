@@ -7,6 +7,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, echo=FALSE}
+plothistory::phist_cache(ask = FALSE)
+```
+
 ## How can I used it?
 
 The `plothistory` package enables one to store all plus generated

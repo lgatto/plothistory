@@ -24,7 +24,7 @@ second. Passed to \code{\link[=Sys.sleep]{Sys.sleep()}}.}
 \item{hgd}{\code{logical(1)} defining whether a web graphics device
 should be started with \code{port} and \code{token}. Default is
 \code{TRUE}. In case the backgroup script stops, the plotting
-history can be restarted with \code{plothistory(hgd = FALSE)}.}
+history can be restarted by setting \code{hgd = FALSE}.}
 
 \item{port}{\code{numeric(1)} defining the server port, passed to
 \code{\link[httpgd:hgd]{httpgd::hgd()}}. If this is set to ‘0’, an open port will be

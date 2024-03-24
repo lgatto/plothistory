@@ -4,7 +4,11 @@
 \alias{phist_cache}
 \title{plothistory Package Cache}
 \usage{
-phist_cache()
+phist_cache(ask = TRUE)
+}
+\arguments{
+\item{ask}{\code{logical(1)} that defines whether to ask to create the
+cache directory it doesn't exist yet. Default is \code{TRUE}.}
 }
 \value{
 The \code{phist_cache()} function returns an instance of class

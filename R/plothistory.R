@@ -7,12 +7,19 @@
 ##'     seconds. at which `phdir` should be updated. Default is 1
 ##'     second. Passed to [Sys.sleep()].
 ##'
+##' @param hgd `logical(1)` defining whether a web graphics device
+##'     should be started with `port` and `token`. Default is
+##'     `TRUE`. In case the backgroup script stops, the plotting
+##'     history can be restarted by setting `hgd = FALSE`.
+##'
 ##' @param port `numeric(1)` defining the server port, passed to
 ##'     [httpgd::hgd()]. If this is set to ‘0’, an open port will be
 ##'     assigned. Default is 5900.
 ##'
 ##' @param token Optional security token, passed to
 ##'     [httpgd::hgd()]. Default is `FALSE` to deactivate the token.
+##'
+##' @param ... Additional parameters passed to [httpgd::hgd()].
 ##'
 ##' @export
 ##'
@@ -22,12 +29,15 @@
 ##'     background script. See [system2()] for details.
 plothistory <- function(phdir = phist_tmp_dir(),
                         sleep = 1,
+                        hgd = TRUE, 
                         port = 5900,
                         token = FALSE,
                         ...) {
     force(phdir)
-    hgd(port = port, token = token, ...)
-    plot(1, type = "n", axes = FALSE, xlab = NA, ylab = NA)
+    if (hgd) {
+        hgd(port = port, token = token, ...)
+        plot(1, type = "n", axes = FALSE, xlab = NA, ylab = NA)
+    }
     script <- system.file("scripts",
                           package = "plothistory",
                           pattern = "plothistory.R")

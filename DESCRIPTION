@@ -14,11 +14,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 Suggests:
     knitr,
-    quarto,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports:
     httr2,
     httpgd,
     tools
-VignetteBuilder: quarto
+VignetteBuilder: knitr

@@ -20,6 +20,9 @@ cache. \code{phist_chache()} returns the central \code{plothistory} cache
 directory.
 
 When plots are cached, they are named after their md5sum.
+
+The function will also display a message with the number of files
+and total size used when the latter reaches 10 Mb.
 }
 \examples{
 

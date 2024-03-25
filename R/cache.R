@@ -17,19 +17,14 @@
 ##' @return The path to the cache directory or `NA`, when it's not
 ##'     set.
 ##'     
-##'
-##' @author Laurent Gatto
-##'
-##' @export
-##'
 ##' @importFrom tools R_user_dir
 ##'
 ##' @examples
 ##'
-##' phist_cache()
+##' plothistory:::phist_cache()
 ##'
 ##' ## to set it in a non-interactive session
-##' phist_cache(ask = FALSE)
+##' plothistory:::phist_cache(ask = FALSE)
 phist_cache <- function(ask = TRUE) {
     cache <- tools::R_user_dir(package = "plothistory",
                                which = "cache")    

@@ -26,11 +26,8 @@ and total size used when the latter reaches 10 Mb.
 }
 \examples{
 
-phist_cache()
+plothistory:::phist_cache()
 
 ## to set it in a non-interactive session
-phist_cache(ask = FALSE)
-}
-\author{
-Laurent Gatto
+plothistory:::phist_cache(ask = FALSE)
 }

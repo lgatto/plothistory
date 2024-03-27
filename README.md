@@ -1,6 +1,6 @@
 [![R-CMD-check](https://github.com/lgatto/plothistory/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/lgatto/plothistory/actions/workflows/R-CMD-check.yaml)
 
-# Store all plus in or across sessions
+# Store all plots in or across sessions
 
 The `plothistory` package allows to store all plots generated during a
 session in a user-defined directory, alike all commands stored in the

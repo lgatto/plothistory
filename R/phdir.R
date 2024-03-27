@@ -33,7 +33,7 @@ phist_dir <- function(path, ...) {
             stop("Couldn't create plot history directory.")
     }
     message("Plot history set to\n  ", path)
-    invisible(path)
+    invisible(normalizePath(path))
 }
 
 ##' @export

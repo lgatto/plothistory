@@ -72,7 +72,7 @@
 <div class="section level2">
 <h2 id="how-can-i-used-it">How can I used it?<a class="anchor" aria-label="anchor" href="#how-can-i-used-it"></a>
 </h2>
-<p>The <code>plothistory</code> package enables one to store all plus
+<p>The <code>plothistory</code> package enables one to store all plots
 generated during a session in a user-defined directory, alike all
 commands stored in the <code>.Rhistory</code> file. These directories
 can be reused across different sessions to keep storing plots.</p>
@@ -87,7 +87,7 @@ deleted once the R session closes.</li>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/phist_dir.html">phist_tmp_dir</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
-<span><span class="co">##   /tmp/Rtmp3BUP1N</span></span></code></pre>
+<span><span class="co">##   /tmp/RtmpO2C4IJ</span></span></code></pre>
 <ul>
 <li>A central cache, using the <code><a href="../reference/phist_dir.html">phist_cache_dir()</a></code>
 function.</li>
@@ -105,7 +105,7 @@ function.</li>
 <pre><code><span><span class="co">## Plot history set to</span></span>
 <span><span class="co">##   /home/runner/work/plothistory/plothistory/vignettes</span></span></code></pre>
 <p>In each case, the function will first check if the directory exists,
-and create if otherwise. The user will be asked to confirm whether the
+and created if required. The user will be asked to confirm whether the
 central cache directory should be created the first time
 <code><a href="../reference/phist_dir.html">phist_cache_dir()</a></code> is used.</p>
 <p>The storage of all plots is initiated by the
@@ -115,11 +115,11 @@ directory, but the above functions can be functions can be passed to
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plothistory.html">plothistory</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Plot history set to</span></span>
-<span><span class="co">##   /tmp/Rtmp3BUP1N</span></span></code></pre>
+<span><span class="co">##   /tmp/RtmpO2C4IJ</span></span></code></pre>
 <pre><code><span><span class="co">## httpgd server running at:</span></span>
 <span><span class="co">##   http://127.0.0.1:5900/live</span></span></code></pre>
 <p>The plots are generated using the <a href="https://nx10.github.io/httpgd/" class="external-link">httpgd</a> graphics device and can
-seen at the URL shown above. Each plot is now copied in the directory
+be seen at the URL shown above. Each plot is now copied in the directory
 defined in <code><a href="../reference/plothistory.html">plothistory()</a></code>.</p>
 <p>Here are two short videos that illustrate the package’s usage:</p>
 <div class="section level3">

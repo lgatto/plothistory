@@ -3,6 +3,8 @@ test_that("works with relative filename (issue #2)", {
     tf <- tempdir()
     setwd(tf)
     message(tf)
+    message(getwd())
+    message(dir(full.names = TRUE, all.files = TRUE))
     plothistory(phist_dir("figs"))
     plot(1)
     expect_true(file.exists("figs/.last.svg"))

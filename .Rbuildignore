@@ -1,3 +1,4 @@
 ^LICENSE\.md$
 ^vignettes/*_files$
 ^\.github$
+.Rhistory

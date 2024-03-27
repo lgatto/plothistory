@@ -6,7 +6,8 @@ test_that("works with relative filename (issue #2)", {
     plot(1)
     message(tf)
     message(getwd())
-    message(dir(full.names = TRUE, all.files = TRUE))
+    message(paste(dir(full.names = TRUE, all.files = TRUE),
+                  collapse = "\n"))
     expect_true(file.exists("figs/.last.svg"))
     ## close device
     httpgd::hgd_close()

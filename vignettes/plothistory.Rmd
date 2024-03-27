@@ -13,7 +13,7 @@ plothistory:::phist_cache(ask = FALSE)
 
 ## How can I used it?
 
-The `plothistory` package enables one to store all plus generated
+The `plothistory` package enables one to store all plots generated
 during a session in a user-defined directory, alike all commands
 stored in the `.Rhistory` file. These directories can be reused across
 different sessions to keep storing plots.
@@ -45,7 +45,7 @@ phist_dir(getwd())
 ```
 
 In each case, the function will first check if the directory exists,
-and create if otherwise. The user will be asked to confirm whether the
+and created if required. The user will be asked to confirm whether the
 central cache directory should be created the first time
 `phist_cache_dir()` is used.
 
@@ -59,7 +59,7 @@ plothistory()
 ```
 
 The plots are generated using the
-[httpgd](https://nx10.github.io/httpgd/) graphics device and can seen
+[httpgd](https://nx10.github.io/httpgd/) graphics device and can be seen
 at the URL shown above. Each plot is now copied in the directory
 defined in `plothistory()`.
 

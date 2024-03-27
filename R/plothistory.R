@@ -35,7 +35,8 @@ plothistory <- function(phdir = phist_tmp_dir()) {
     script <- system.file("scripts",
                           package = "plothistory",
                           pattern = "poll.R")
-    cmd <- paste("Rscript", script, phdir)
+    cmd <- paste(file.path(R.home(), "bin", "Rscript"),
+                 script, phdir)
     ## message(cmd)
     system(cmd, wait = FALSE)
 }

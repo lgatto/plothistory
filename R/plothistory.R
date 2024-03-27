@@ -31,10 +31,10 @@ plothistory <- function(phdir = phist_tmp_dir()) {
     stopifnot(dir.exists(phdir))
 
     httpgd::hgd(port = 5900, token = FALSE)
-    plot(1, type = "n", axes = FALSE, xlab = NA, ylab = NA)    
+    plot(1, type = "n", axes = FALSE, xlab = NA, ylab = NA)
     script <- system.file("scripts",
                           package = "plothistory",
-                          pattern = "plothistory.R")    
+                          pattern = "poll.R")
     cmd <- paste("Rscript", script, phdir)
     ## message(cmd)
     system(cmd, wait = FALSE)
@@ -58,14 +58,13 @@ save_plot_to_file <- function(dir, lnsym = ".last.svg") {
     lnsym <- file.path(dir, lnsym)
     stopifnot(dir.exists(dir))
     fl <- file.path(dir, "current.svg")
-    svg <- readLines("http://127.0.0.1:5900/plot", warn = FALSE)    
+    svg <- readLines("http://127.0.0.1:5900/plot", warn = FALSE)
     writeLines(svg, fl)
-    on.exit(unlink(fl))    
-    md5 <- tools::md5sum(fl)    
+    on.exit(unlink(fl))
+    md5 <- tools::md5sum(fl)
     newf <- file.path(dir, paste0(md5[[1]], ".svg"))
     file.rename(from = fl, to = newf)
     unlink(lnsym)
     file.symlink(newf, lnsym)
     invisible(newf)
 }
-

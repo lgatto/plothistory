@@ -4,16 +4,21 @@
 \alias{plothistory}
 \title{Record Your Plot History}
 \usage{
-plothistory(phdir = phist_tmp_dir(), ...)
+plothistory(phdir = phist_tmp_dir(), hgd = TRUE, ...)
 }
 \arguments{
 \item{phdir}{\code{character(1)} defining the plothistory
 directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}.}
 
+\item{hgd}{\code{logical(1)} that defines if a web server graphics
+device should be initialised with \code{\link[httpgd:hgd]{httpgd::hgd()}}. Default is
+\code{TRUE}. Set to \code{FALSE} to simply change \code{phdir} and keep using
+the same graphics device and websocket.}
+
 \item{...}{additional parameters passed to \code{\link[httpgd:hgd]{httpgd::hgd()}}.}
 }
 \value{
-Invisibly returns \code{TRUE}.
+Invisibly returns \code{phdir}.
 }
 \description{
 The \code{plothistory()} function initiates saving all
@@ -27,4 +32,21 @@ device.
 event that triggers the saving of the plot into the user defined
 directory \code{phdir}.
 }
+}
+\examples{
+
+## Start recording plots in a temp directory.
+
+phdir <- plothistory()
+plot(rnorm(10))
+plot(1:10, col = "red")
+dir(phdir, full.names = TRUE)
+
+## Recording plots in central cache, using same http graphics
+## device.
+
+phdir <- plothistory(phist_cache_dir(), FALSE)
+plot(rnorm(100), col = "blue")
+plot(rnorm(100), col = "green", main = "plot")
+dir(phdir)
 }

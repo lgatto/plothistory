@@ -1,3 +1,15 @@
+## Package environment contains:
+##
+## - phdir: current plothistory directory
+## - WebSocket object
+##
+## Both assigned in plothistory().
+.phist_env <- new.env(parent = emptyenv(), hash = TRUE)
+
+wsocket <- function()
+    paste0("ws://", hgd_details()$host,":",
+           hgd_details()$port)
+
 ##' @title Record Your Plot History
 ##'
 ##' @description The `plothistory()` function initiates saving all
@@ -16,6 +28,11 @@
 ##' @param phdir `character(1)` defining the plothistory
 ##'     directory. Default is to [phist_tmp_dir()].
 ##'
+##' @param hgd `logical(1)` that defines if a web server graphics
+##'     device should be initialised with [httpgd::hgd()]. Default is
+##'     `TRUE`. Set to `FALSE` to simply change `phdir` and keep using
+##'     the same graphics device and websocket.
+##'
 ##' @param ... additional parameters passed to [httpgd::hgd()].
 ##'
 ##' @export
@@ -25,27 +42,47 @@
 ##' @importFrom websocket WebSocket
 ##' @importFrom jsonlite parse_json
 ##'
-##' @return Invisibly returns `TRUE`.
-plothistory <- function(phdir = phist_tmp_dir(), ...) {
-    force(phdir)
+##' @return Invisibly returns `phdir`.
+##'
+##' @examples
+##'
+##' ## Start recording plots in a temp directory.
+##'
+##' phdir <- plothistory()
+##' plot(rnorm(10))
+##' plot(1:10, col = "red")
+##' dir(phdir, full.names = TRUE)
+##'
+##' ## Recording plots in central cache, using same http graphics
+##' ## device.
+##'
+##' phdir <- plothistory(phist_cache_dir(), FALSE)
+##' plot(rnorm(100), col = "blue")
+##' plot(rnorm(100), col = "green", main = "plot")
+##' dir(phdir)
+plothistory <- function(phdir = phist_tmp_dir(),
+                        hgd = TRUE,
+                        ...) {
     phdir <- path.expand(phdir)
     stopifnot(dir.exists(phdir))
-    n <- 0 ## plot counter
-
-    httpgd::hgd(token = FALSE, ...)
-    wskt <- paste0(
-        "ws://", hgd_details()$host,":",
-        hgd_details()$port)
-    ws <- WebSocket$new(wskt, autoConnect = FALSE)
-    ws$onMessage(function(event) {
-        n <- get("n")
-        hs <- parse_json(event$data)$hsize
-        if (hs > n)
-            save_plot_to_file(phdir)
-        n <<- hs
-    })
-    ws$connect()
-    invisible(TRUE)
+    assign("phdir", phdir, envir = .phist_env)
+    if (hgd) {
+        n <- 0 ## plot counter
+        httpgd::hgd(token = FALSE, ...)
+        ws <- WebSocket$new(wsocket(), autoConnect = FALSE)
+        ws$onMessage(function(event) {
+            n <- get("n")
+            hs <- parse_json(event$data)$hsize
+            if (hs > n) {
+                phdir <- get("phdir", envir = .phist_env)
+                save_plot_to_file(phdir)
+            }
+            n <<- hs
+        })
+        assign("ws", ws, envir = .phist_env)
+        ws$connect()
+    }
+    invisible(phdir)
 }
 
 

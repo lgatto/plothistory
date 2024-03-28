@@ -46,6 +46,7 @@ wsocket <- function()
 ##'
 ##' @examples
 ##'
+##' #############################################
 ##' ## Start recording plots in a temp directory.
 ##'
 ##' phdir <- plothistory()
@@ -53,6 +54,7 @@ wsocket <- function()
 ##' plot(1:10, col = "red")
 ##' dir(phdir, full.names = TRUE)
 ##'
+##' #############################################################
 ##' ## Recording plots in central cache, using same http graphics
 ##' ## device.
 ##'

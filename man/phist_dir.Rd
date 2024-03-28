@@ -39,3 +39,14 @@ The directory creating is delegated to \code{\link[=tempdir]{tempdir()}} by
 \code{phist_tmp_dir()} and \code{\link[=dir.create]{dir.create()}} by \code{phist_dir()} and
 \code{phist_cache_dir()}.
 }
+\examples{
+
+## temp directory
+phist_tmp_dir()
+
+## central cache
+phist_cache_dir()
+
+## user-defined directory
+phist_dir(getwd())
+}

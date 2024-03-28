@@ -25,6 +25,17 @@
 ##'     directory.
 ##'
 ##' @export
+##'
+##' @examples
+##'
+##' ## temp directory
+##' phist_tmp_dir()
+##'
+##' ## central cache
+##' phist_cache_dir()
+##'
+##' ## user-defined directory
+##' phist_dir(getwd())
 phist_dir <- function(path, ...) {
     path <- path.expand(path)
     if (!dir.exists(path)) {

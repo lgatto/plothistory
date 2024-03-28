@@ -25,8 +25,7 @@
 ##' @importFrom websocket WebSocket
 ##' @importFrom jsonlite parse_json
 ##'
-##' @return The value of the error code (0 for success) of the
-##'     background script.
+##' @return Invisibly returns `TRUE`.
 plothistory <- function(phdir = phist_tmp_dir(), ...) {
     force(phdir)
     phdir <- path.expand(phdir)
@@ -46,6 +45,7 @@ plothistory <- function(phdir = phist_tmp_dir(), ...) {
         n <<- hs
     })
     ws$connect()
+    invisible(TRUE)
 }
 
 

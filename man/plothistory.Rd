@@ -13,8 +13,7 @@ directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}.}
 \item{...}{additional parameters passed to \code{\link[httpgd:hgd]{httpgd::hgd()}}.}
 }
 \value{
-The value of the error code (0 for success) of the
-background script.
+Invisibly returns \code{TRUE}.
 }
 \description{
 The \code{plothistory()} function initiates saving all

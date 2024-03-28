@@ -22,12 +22,16 @@ ws$onMessage(function(event) {
     hs <- jsonlite::parse_json(event$data)$hsize
     n <- get("n")
     ## message("Current is ", n, "\n")
-    if (hs == (n + 1))
+    if (hs == (n + 1)) {
         message("New plot")
-    else if (hs == n) {} ## Nothing
-    else if (hs < n)
+        ugd_save(file = "~/tmp/o.svg")
+    }
+    else if (hs == n) {
+        ## Nothing
+    }
+    else if (hs < n) {
         message("Plot(s) deleted")
-    else
+    } else
         warning("What happened?")
     n <<- hs
 })
@@ -50,3 +54,6 @@ ws$connect()
 ## are returned when new plots are created (and hsize is incremented),
 ## when a plot is deleted (and hsize is decremented), when one zooms
 ## in and out, when history is hidden,
+
+
+plot(1)

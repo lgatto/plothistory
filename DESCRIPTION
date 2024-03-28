@@ -1,6 +1,6 @@
 Package: plothistory
 Title: Store and manage your plot history
-Version: 0.1.0
+Version: 0.1.1
 Authors@R:
     person("Laurent", "Gatto",
            email = "laurent.gatto@uclouvain.be",

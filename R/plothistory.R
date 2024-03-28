@@ -4,41 +4,48 @@
 ##'     plots generated during the session in `phdir`. It works as
 ##'     follows:
 ##'
-##' - It starts a http graphics device using [httpgd::hgd()]. By
-##'   default, the localhost port is set to 5900 and no token is
-##'   set. A first empty plot is created by default.
+##' - It first starts a web server graphics device [httpgd::hgd()].
 ##'
-##' - It then start an R script in the background that will fetch the
-##'   latest plot from the [httpgd::hgd()] device, rename it using its
-##'   md5sum (so as to avoid duplicating plots), and created a
-##'   symbolic link ".last.svg" pointing to the latest figure.
+##' - Next it creates and runs a websocket connected to the graphics
+##'   device.
 ##'
-##' The background R script is automatically terminated when closing
-##' the R session.
+##' - Every time the user creates a plot, the web socket receives an
+##'   event that triggers the saving of the plot into the user defined
+##'   directory `phdir`.
 ##'
 ##' @param phdir `character(1)` defining the plothistory
 ##'     directory. Default is to [phist_tmp_dir()].
 ##'
+##' @param ... additional parameters passed to [httpgd::hgd()].
+##'
 ##' @export
 ##'
-##' @importFrom httpgd hgd
+##' @importFrom httpgd hgd hgd_details
+##' @importFrom unigd ugd_save
+##' @importFrom websocket WebSocket
+##' @importFrom jsonlite parse_json
 ##'
 ##' @return The value of the error code (0 for success) of the
 ##'     background script.
-plothistory <- function(phdir = phist_tmp_dir()) {
+plothistory <- function(phdir = phist_tmp_dir(), ...) {
     force(phdir)
     phdir <- path.expand(phdir)
     stopifnot(dir.exists(phdir))
+    n <- 0 ## plot counter
 
-    httpgd::hgd(port = 5900, token = FALSE)
-    plot(1, type = "n", axes = FALSE, xlab = NA, ylab = NA)
-    script <- system.file("scripts",
-                          package = "plothistory",
-                          pattern = "poll.R")
-    cmd <- paste(file.path(R.home(), "bin", "Rscript"),
-                 script, phdir)
-    ## message(cmd)
-    system(cmd, wait = FALSE)
+    httpgd::hgd(token = FALSE, ...)
+    wskt <- paste0(
+        "ws://", hgd_details()$host,":",
+        hgd_details()$port)
+    ws <- WebSocket$new(wskt, autoConnect = FALSE)
+    ws$onMessage(function(event) {
+        n <- get("n")
+        hs <- parse_json(event$data)$hsize
+        if (hs > n)
+            save_plot_to_file(phdir)
+        n <<- hs
+    })
+    ws$connect()
 }
 
 
@@ -59,8 +66,7 @@ save_plot_to_file <- function(dir, lnsym = ".last.svg") {
     lnsym <- file.path(dir, lnsym)
     stopifnot(dir.exists(dir))
     fl <- file.path(dir, "current.svg")
-    svg <- readLines("http://127.0.0.1:5900/plot", warn = FALSE)
-    writeLines(svg, fl)
+    ugd_save(file = fl)
     on.exit(unlink(fl))
     md5 <- tools::md5sum(fl)
     newf <- file.path(dir, paste0(md5[[1]], ".svg"))

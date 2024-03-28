@@ -4,11 +4,13 @@
 \alias{plothistory}
 \title{Record Your Plot History}
 \usage{
-plothistory(phdir = phist_tmp_dir())
+plothistory(phdir = phist_tmp_dir(), ...)
 }
 \arguments{
 \item{phdir}{\code{character(1)} defining the plothistory
 directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}.}
+
+\item{...}{additional parameters passed to \code{\link[httpgd:hgd]{httpgd::hgd()}}.}
 }
 \value{
 The value of the error code (0 for success) of the

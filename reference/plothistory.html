@@ -27,7 +27,7 @@ directory phdir.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">plothistory</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
@@ -71,7 +71,8 @@ directory <code>phdir</code>.</p></li>
     <h2>Arguments</h2>
     <dl><dt>phdir</dt>
 <dd><p><code>character(1)</code> defining the plothistory
-directory. Default is to <code><a href="phist_dir.html">phist_tmp_dir()</a></code>.</p></dd>
+directory. Default is to <code><a href="phist_dir.html">phist_tmp_dir()</a></code>. If set to <code>NULL</code>,
+plot recording is stopped.</p></dd>
 
 
 <dt>hgd</dt>
@@ -100,13 +101,13 @@ the same graphics device and websocket.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">phdir</span> <span class="op">&lt;-</span> <span class="fu">plothistory</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Plot history set to</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>   /tmp/RtmpvOPDGQ</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>   /tmp/RtmpX3wyA3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> httpgd server running at:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   http://127.0.0.1:35761/live</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   http://127.0.0.1:42041/live</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">phdir</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpvOPDGQ/downlit"         "/tmp/RtmpvOPDGQ/file17e3a005fb9"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpX3wyA3/downlit"          "/tmp/RtmpX3wyA3/file179f2607184a"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">#############################################################</span></span></span>
 <span class="r-in"><span><span class="co">## Recording plots in central cache, using same http graphics</span></span></span>
@@ -119,6 +120,19 @@ the same graphics device and websocket.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"green"</span>, main <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">phdir</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> character(0)</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">########################</span></span></span>
+<span class="r-in"><span><span class="co">## Stop recording plots.</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">phdir</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-in"><span><span class="fu">plothistory</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## None added</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">phdir</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
 </code></pre></div>
     </div>
   </div>

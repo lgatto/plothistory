@@ -26,7 +26,8 @@ wsocket <- function()
 ##'   directory `phdir`.
 ##'
 ##' @param phdir `character(1)` defining the plothistory
-##'     directory. Default is to [phist_tmp_dir()].
+##'     directory. Default is to [phist_tmp_dir()]. If set to `NULL`,
+##'     plot recording is stopped.
 ##'
 ##' @param hgd `logical(1)` that defines if a web server graphics
 ##'     device should be initialised with [httpgd::hgd()]. Default is
@@ -62,9 +63,25 @@ wsocket <- function()
 ##' plot(rnorm(100), col = "blue")
 ##' plot(rnorm(100), col = "green", main = "plot")
 ##' dir(phdir)
+##'
+##' ########################
+##' ## Stop recording plots.
+##' length(dir(phdir))
+##' plothistory(NULL)
+##'
+##' plot(rnorm(100))
+##' plot(rnorm(100))
+##'
+##' ## None added
+##' length(dir(phdir))
 plothistory <- function(phdir = phist_tmp_dir(),
                         hgd = TRUE,
                         ...) {
+    if (is.null(phdir)) {
+        ws <- get("ws", envir = .phist_env)
+        ws$close()
+        return(invisible(NULL))
+    }
     phdir <- path.expand(phdir)
     stopifnot(dir.exists(phdir))
     assign("phdir", phdir, envir = .phist_env)
@@ -80,6 +97,9 @@ plothistory <- function(phdir = phist_tmp_dir(),
                 save_plot_to_file(phdir)
             }
             n <<- hs
+        })
+        ws$onClose(function(event) {
+            message("Stopping plot history.")
         })
         assign("ws", ws, envir = .phist_env)
         ws$connect()

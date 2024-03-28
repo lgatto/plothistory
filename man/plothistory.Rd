@@ -8,7 +8,8 @@ plothistory(phdir = phist_tmp_dir(), hgd = TRUE, ...)
 }
 \arguments{
 \item{phdir}{\code{character(1)} defining the plothistory
-directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}.}
+directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}. If set to \code{NULL},
+plot recording is stopped.}
 
 \item{hgd}{\code{logical(1)} that defines if a web server graphics
 device should be initialised with \code{\link[httpgd:hgd]{httpgd::hgd()}}. Default is
@@ -51,4 +52,15 @@ phdir <- plothistory(phist_cache_dir(), FALSE)
 plot(rnorm(100), col = "blue")
 plot(rnorm(100), col = "green", main = "plot")
 dir(phdir)
+
+########################
+## Stop recording plots.
+length(dir(phdir))
+plothistory(NULL)
+
+plot(rnorm(100))
+plot(rnorm(100))
+
+## None added
+length(dir(phdir))
 }

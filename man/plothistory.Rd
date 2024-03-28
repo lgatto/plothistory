@@ -21,15 +21,11 @@ The \code{plothistory()} function initiates saving all
 plots generated during the session in \code{phdir}. It works as
 follows:
 \itemize{
-\item It starts a http graphics device using \code{\link[httpgd:hgd]{httpgd::hgd()}}. By
-default, the localhost port is set to 5900 and no token is
-set. A first empty plot is created by default.
-\item It then start an R script in the background that will fetch the
-latest plot from the \code{\link[httpgd:hgd]{httpgd::hgd()}} device, rename it using its
-md5sum (so as to avoid duplicating plots), and created a
-symbolic link ".last.svg" pointing to the latest figure.
+\item It first starts a web server graphics device \code{\link[httpgd:hgd]{httpgd::hgd()}}.
+\item Next it creates and runs a websocket connected to the graphics
+device.
+\item Every time the user creates a plot, the web socket receives an
+event that triggers the saving of the plot into the user defined
+directory \code{phdir}.
 }
-
-The background R script is automatically terminated when closing
-the R session.
 }

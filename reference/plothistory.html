@@ -30,7 +30,7 @@ the R session.'><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/l
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">plothistory</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
@@ -70,7 +70,7 @@ the R session.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plothistory</span><span class="op">(</span>phdir <span class="op">=</span> <span class="fu"><a href="phist_dir.html">phist_tmp_dir</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plothistory</span><span class="op">(</span>phdir <span class="op">=</span> <span class="fu"><a href="phist_dir.html">phist_tmp_dir</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -78,6 +78,10 @@ the R session.</p>
     <dl><dt>phdir</dt>
 <dd><p><code>character(1)</code> defining the plothistory
 directory. Default is to <code><a href="phist_dir.html">phist_tmp_dir()</a></code>.</p></dd>
+
+
+<dt>...</dt>
+<dd><p>additional parameters passed to <code><a href="https://nx10.github.io/httpgd/reference/hgd.html" class="external-link">httpgd::hgd()</a></code>.</p></dd>
 
 </dl></div>
     <div id="value">

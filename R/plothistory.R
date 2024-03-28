@@ -57,9 +57,9 @@ wsocket <- function()
 ##'
 ##' #############################################################
 ##' ## Recording plots in central cache, using same http graphics
-##' ## device.
+##' ## device (with hgd = FALSE).
 ##'
-##' phdir <- plothistory(phist_cache_dir(), FALSE)
+##' phdir <- plothistory(phist_cache_dir(ask = FALSE), hgd = FALSE)
 ##' plot(rnorm(100), col = "blue")
 ##' plot(rnorm(100), col = "green", main = "plot")
 ##' dir(phdir)

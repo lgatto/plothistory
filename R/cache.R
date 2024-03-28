@@ -13,10 +13,10 @@
 ##'
 ##' @param ask `logical(1)` that defines whether to ask to create the
 ##'     cache directory it doesn't exist yet. Default is `TRUE`.
-##' 
+##'
 ##' @return The path to the cache directory or `NA`, when it's not
 ##'     set.
-##'     
+##'
 ##' @importFrom tools R_user_dir
 ##'
 ##' @examples
@@ -27,15 +27,15 @@
 ##' plothistory:::phist_cache(ask = FALSE)
 phist_cache <- function(ask = TRUE) {
     cache <- tools::R_user_dir(package = "plothistory",
-                               which = "cache")    
+                               which = "cache")
     if (!file.exists(cache)) {
-        if (!interactive()) {
-            if (ask) return(NA)
-            else {
-                dir.create(cache, recursive = TRUE)
-                return(cache)
-            }
+        if (!ask) {
+            ## whether interactive or not
+            dir.create(cache, recursive = TRUE)
+            return(cache)
         }
+        if (!interactive() & ask)
+            return(NA_character_)
         txt <- paste0(cache,
                    "\n does not exist, create directory? (yes/no): ")
         doit <- NA

@@ -19,7 +19,7 @@ phist_cache_dir(ask = TRUE)
 \item{...}{Additional parameters passed to \code{\link[=dir.create]{dir.create()}}.}
 
 \item{ask}{\code{logical(1)} that defines whether to ask to create the
-cache directory it doesn't exist yet. Default is \code{TRUE}.}
+cache directory if it doesn't exist yet. Default is \code{TRUE}.}
 }
 \value{
 Used for its side effect of creating a

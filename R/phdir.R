@@ -56,7 +56,7 @@ phist_tmp_dir <- function()
 ##' @export
 ##'
 ##' @param ask `logical(1)` that defines whether to ask to create the
-##'     cache directory it doesn't exist yet. Default is `TRUE`.
+##'     cache directory if it doesn't exist yet. Default is `TRUE`.
 ##'
 ##' @rdname phist_dir
 phist_cache_dir <- function(ask = TRUE)

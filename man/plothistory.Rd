@@ -4,7 +4,7 @@
 \alias{plothistory}
 \title{Record Your Plot History}
 \usage{
-plothistory(phdir = phist_tmp_dir(), hgd = TRUE, ...)
+plothistory(phdir = phist_tmp_dir(), hgd = TRUE, ext = "svg", ...)
 }
 \arguments{
 \item{phdir}{\code{character(1)} defining the plothistory
@@ -15,6 +15,11 @@ plot recording is stopped.}
 device should be initialised with \code{\link[httpgd:hgd]{httpgd::hgd()}}. Default is
 \code{TRUE}. Set to \code{FALSE} to simply change \code{phdir} and keep using
 the same graphics device and websocket.}
+
+\item{ext}{\code{character(1)} defining the file extension/type to save
+the plots to, such as "pdf", "svg", "png", "tiff", ... Default
+is \code{"svg"}. See \code{unigd::ugd_renderers()} to get a
+list of supported extensions.}
 
 \item{...}{additional parameters passed to \code{\link[httpgd:hgd]{httpgd::hgd()}}.}
 }
@@ -36,17 +41,17 @@ directory \code{phdir}.
 }
 \examples{
 
-#############################################
-## Start recording plots in a temp directory.
+#################################################
+## Start recording pdf plots in a temp directory.
 
-phdir <- plothistory()
-plot(rnorm(10))
+phdir <- plothistory(ext = "pdf")
+plot(rnorm(10000))
 plot(1:10, col = "red")
 dir(phdir, full.names = TRUE)
 
-#############################################################
-## Recording plots in central cache, using same http graphics
-## device (with hgd = FALSE).
+#########################################################
+## Recording svg plots in central cache, using same http
+## graphics device (with hgd = FALSE).
 
 phdir <- plothistory(phist_cache_dir(ask = FALSE), hgd = FALSE)
 plot(rnorm(100), col = "blue")

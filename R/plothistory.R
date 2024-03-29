@@ -34,6 +34,11 @@ wsocket <- function()
 ##'     `TRUE`. Set to `FALSE` to simply change `phdir` and keep using
 ##'     the same graphics device and websocket.
 ##'
+##' @param ext `character(1)` defining the file extension/type to save
+##'     the plots to, such as "pdf", "svg", "png", "tiff", ... Default
+##'     is `"svg"`. See `unigd::ugd_renderers()` to get a
+##'     list of supported extensions.
+##'
 ##' @param ... additional parameters passed to [httpgd::hgd()].
 ##'
 ##' @export
@@ -47,17 +52,17 @@ wsocket <- function()
 ##'
 ##' @examples
 ##'
-##' #############################################
-##' ## Start recording plots in a temp directory.
+##' #################################################
+##' ## Start recording pdf plots in a temp directory.
 ##'
-##' phdir <- plothistory()
-##' plot(rnorm(10))
+##' phdir <- plothistory(ext = "pdf")
+##' plot(rnorm(10000))
 ##' plot(1:10, col = "red")
 ##' dir(phdir, full.names = TRUE)
 ##'
-##' #############################################################
-##' ## Recording plots in central cache, using same http graphics
-##' ## device (with hgd = FALSE).
+##' #########################################################
+##' ## Recording svg plots in central cache, using same http
+##' ## graphics device (with hgd = FALSE).
 ##'
 ##' phdir <- plothistory(phist_cache_dir(ask = FALSE), hgd = FALSE)
 ##' plot(rnorm(100), col = "blue")
@@ -76,6 +81,7 @@ wsocket <- function()
 ##' length(dir(phdir))
 plothistory <- function(phdir = phist_tmp_dir(),
                         hgd = TRUE,
+                        ext = "svg",
                         ...) {
     if (is.null(phdir)) {
         ws <- get("ws", envir = .phist_env)
@@ -87,14 +93,14 @@ plothistory <- function(phdir = phist_tmp_dir(),
     assign("phdir", phdir, envir = .phist_env)
     if (hgd) {
         n <- 0 ## plot counter
-        httpgd::hgd(token = FALSE, ...)
+        httpgd::hgd(...)
         ws <- WebSocket$new(wsocket(), autoConnect = FALSE)
         ws$onMessage(function(event) {
             n <- get("n")
             hs <- parse_json(event$data)$hsize
             if (hs > n) {
                 phdir <- get("phdir", envir = .phist_env)
-                save_plot_to_file(phdir)
+                serialise(phdir, ext)
             }
             n <<- hs
         })
@@ -111,24 +117,23 @@ plothistory <- function(phdir = phist_tmp_dir(),
 ##' @param dir `character(1)` with the path to the plothistory
 ##'     directory. See [phist_dir()] for details.
 ##'
-##' @param lnsym `character(1)` with the symbolic link's name, that
-##'     will point to the last plot filename.
+##' @param ext `character(1)` defining the file extension/type to save
+##'     the plots to. Default is `"svg"`.
 ##'
-##' @return `character(1)` containing the newly created filename or
-##'     `NULL`, if `x` was `length(x) == 0`.
+##' @return `character(1)` containing the newly created filename.
 ##'
 ##' @noRd
 ##'
 ##' @importFrom tools md5sum
-save_plot_to_file <- function(dir, lnsym = ".last.svg") {
+serialise <- function(dir, ext = "svg") {
     dir <- path.expand(dir)
-    lnsym <- file.path(dir, lnsym)
     stopifnot(dir.exists(dir))
-    fl <- file.path(dir, "current.svg")
+    lnsym <- file.path(dir, paste0(".last.", ext))
+    fl <- file.path(dir, paste0("current.", ext))
     ugd_save(file = fl)
     on.exit(unlink(fl))
     md5 <- tools::md5sum(fl)
-    newf <- file.path(dir, paste0(md5[[1]], ".svg"))
+    newf <- file.path(dir, paste0(md5[[1]], ".", ext))
     file.rename(from = fl, to = newf)
     unlink(lnsym)
     file.symlink(newf, lnsym)

@@ -54,6 +54,7 @@ dir(phdir, full.names = TRUE)
 ## graphics device (with hgd = FALSE).
 
 phdir <- plothistory(phist_cache_dir(ask = FALSE), hgd = FALSE)
+dir(phdir)
 plot(rnorm(100), col = "blue")
 plot(rnorm(100), col = "green", main = "plot")
 dir(phdir)

@@ -41,6 +41,13 @@ directory \code{phdir}.
 }
 \examples{
 
+##!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!##
+## Note that this doesn't work in a non-interactive ##
+## session. The example below doesn't make sense    ##
+## on-line. Please run it locally.                  ##
+##!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!##
+
+
 #################################################
 ## Start recording pdf plots in a temp directory.
 

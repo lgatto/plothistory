@@ -96,27 +96,32 @@ plothistory <- function(phdir = phist_tmp_dir(),
                         ...) {
     if (is.null(phdir)) {
         ws <- get("ws", envir = .phist_env)
-        ws$close()
+        if (!is.null(ws)) ws$close()
         return(invisible(NULL))
     }
     phdir <- path.expand(phdir)
     stopifnot(dir.exists(phdir))
     assign("phdir", phdir, envir = .phist_env)
     if (start_hgd) {
-        n <- 0 ## plot counter
+        ## plot counter
+        assign("n", 0, envir = .phist_env)
         httpgd::hgd(...)
         ws <- WebSocket$new(wsocket(), autoConnect = FALSE)
         ws$onMessage(function(event) {
-            n <- get("n")
+            n <- get("n", envir = .phist_env)
             hs <- parse_json(event$data)$hsize
             if (hs > n) {
                 phdir <- get("phdir", envir = .phist_env)
                 serialise(phdir, ext)
             }
-            n <<- hs
+            assign("n", hs, envir = .phist_env)
         })
         ws$onClose(function(event) {
             message("Stopping plot history.")
+            ## unset package env variables
+            assign("ws", NULL, envir = .phist_env)
+            assign("phdir", NA_character_, envir = .phist_env)
+            assign("n", NA, envir = .phist_env)
         })
         assign("ws", ws, envir = .phist_env)
         ws$connect()

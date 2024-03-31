@@ -29,10 +29,11 @@ wsocket <- function()
 ##'     directory. Default is to [phist_tmp_dir()]. If set to `NULL`,
 ##'     plot recording is stopped.
 ##'
-##' @param hgd `logical(1)` that defines if a web server graphics
-##'     device should be initialised with [httpgd::hgd()]. Default is
-##'     `TRUE`. Set to `FALSE` to simply change `phdir` and keep using
-##'     the same graphics device and websocket.
+##' @param start_hgd `logical(1)` that defines if a web server
+##'     graphics device should be initialised with
+##'     [httpgd::hgd()]. Default is `TRUE`. Set to `FALSE` to simply
+##'     change `phdir` and keep using the same graphics device and
+##'     websocket.
 ##'
 ##' @param ext `character(1)` defining the file extension/type to save
 ##'     the plots to, such as "pdf", "svg", "png", "tiff", ... Default
@@ -60,18 +61,20 @@ wsocket <- function()
 ##'
 ##'
 ##' #################################################
-##' ## Start recording pdf plots in a temp directory.
+##' ## Start recording svg plots in a temp directory.
 ##'
-##' phdir <- plothistory(ext = "pdf")
+##' phdir <- plothistory()
 ##' plot(rnorm(10000))
 ##' plot(1:10, col = "red")
 ##' dir(phdir, full.names = TRUE)
 ##'
 ##' #########################################################
-##' ## Recording svg plots in central cache, using same http
-##' ## graphics device (with hgd = FALSE).
+##' ## Recording pdf plots in central cache, using same http
+##' ## graphics device (with start_hgd = FALSE).
 ##'
-##' phdir <- plothistory(phist_cache_dir(ask = FALSE), hgd = FALSE)
+##' phdir <- plothistory(phist_cache_dir(ask = FALSE),
+##'                      ext = "pdf",
+##'                      start_hgd = FALSE)
 ##' dir(phdir)
 ##' plot(rnorm(100), col = "blue")
 ##' plot(rnorm(100), col = "green", main = "plot")
@@ -88,7 +91,7 @@ wsocket <- function()
 ##' ## None added
 ##' length(dir(phdir))
 plothistory <- function(phdir = phist_tmp_dir(),
-                        hgd = TRUE,
+                        start_hgd = TRUE,
                         ext = "svg",
                         ...) {
     if (is.null(phdir)) {
@@ -99,7 +102,7 @@ plothistory <- function(phdir = phist_tmp_dir(),
     phdir <- path.expand(phdir)
     stopifnot(dir.exists(phdir))
     assign("phdir", phdir, envir = .phist_env)
-    if (hgd) {
+    if (start_hgd) {
         n <- 0 ## plot counter
         httpgd::hgd(...)
         ws <- WebSocket$new(wsocket(), autoConnect = FALSE)

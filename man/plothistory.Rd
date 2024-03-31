@@ -4,17 +4,18 @@
 \alias{plothistory}
 \title{Record Your Plot History}
 \usage{
-plothistory(phdir = phist_tmp_dir(), hgd = TRUE, ext = "svg", ...)
+plothistory(phdir = phist_tmp_dir(), start_hgd = TRUE, ext = "svg", ...)
 }
 \arguments{
 \item{phdir}{\code{character(1)} defining the plothistory
 directory. Default is to \code{\link[=phist_tmp_dir]{phist_tmp_dir()}}. If set to \code{NULL},
 plot recording is stopped.}
 
-\item{hgd}{\code{logical(1)} that defines if a web server graphics
-device should be initialised with \code{\link[httpgd:hgd]{httpgd::hgd()}}. Default is
-\code{TRUE}. Set to \code{FALSE} to simply change \code{phdir} and keep using
-the same graphics device and websocket.}
+\item{start_hgd}{\code{logical(1)} that defines if a web server
+graphics device should be initialised with
+\code{\link[httpgd:hgd]{httpgd::hgd()}}. Default is \code{TRUE}. Set to \code{FALSE} to simply
+change \code{phdir} and keep using the same graphics device and
+websocket.}
 
 \item{ext}{\code{character(1)} defining the file extension/type to save
 the plots to, such as "pdf", "svg", "png", "tiff", ... Default
@@ -49,18 +50,20 @@ directory \code{phdir}.
 
 
 #################################################
-## Start recording pdf plots in a temp directory.
+## Start recording svg plots in a temp directory.
 
-phdir <- plothistory(ext = "pdf")
+phdir <- plothistory()
 plot(rnorm(10000))
 plot(1:10, col = "red")
 dir(phdir, full.names = TRUE)
 
 #########################################################
-## Recording svg plots in central cache, using same http
-## graphics device (with hgd = FALSE).
+## Recording pdf plots in central cache, using same http
+## graphics device (with start_hgd = FALSE).
 
-phdir <- plothistory(phist_cache_dir(ask = FALSE), hgd = FALSE)
+phdir <- plothistory(phist_cache_dir(ask = FALSE),
+                     ext = "pdf",
+                     start_hgd = FALSE)
 dir(phdir)
 plot(rnorm(100), col = "blue")
 plot(rnorm(100), col = "green", main = "plot")

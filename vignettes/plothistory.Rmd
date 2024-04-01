@@ -2,7 +2,7 @@
 title: "The plothistory package"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{The `plothistory` package}
+  %\VignetteIndexEntry{The plothistory package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
